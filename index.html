@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        <!-- Bootstrap JS and Popper.js (order matters) -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha384-GLhlTQ8iSODdLpuUnLJfB515tiJDZDQ8n4xjxpGmCA+3tO8cAJq2M+OM5LusPwM"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" href="assets/css/style.css">
+        <title>Doctor Visits</title>
+        <script type="module" defer src="assets/js/main.js"></script>
+    </head>
+    
+
+<body>
+<nav class="navbar bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+        <img src="assets/img/logo.png" alt="Logo" width="60px" height="60px" >
+    </a>
+    <button class="btn btn-outline-success" type="button" id="loginBtn" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+
+    <button type="button" class="btn btn-success d-none" id="createVisitBtn" data-bs-toggle="modal" data-bs-target="#createVisitModal">Create Visit</button>
+
+    <button class="btn btn-outline-danger logout" type="button" id="logoutBtn" >Log out</button></div>
+</nav>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Example: name@gmail.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                        <i class="pass_info">Password length can be min <strong>4</strong> and max <strong>10</strong></i>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submitLogin">Submit</button>
+                </form>
+                <div id="loginStatusMessage" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createVisitModal" tabindex="-1" aria-labelledby="createVisitModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createVisitModalLabel">Create Visit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createVisitForm">
+                    <div class="mb-3">
+                        <label for="doctorSelect" class="form-label">Select Doctor</label>
+                        <select class="form-select" id="doctorSelect" required>
+                            <option value="" selected disabled>Select Doctor</option>
+                            <option value="cardiologist">Cardiologist</option>
+                            <option value="dentist">Dentist</option>
+                            <option value="therapist">Therapist</option>
+                        </select>
+                    </div>
+                    <div id="doctorFields"></div>
+                    <div class="mb-3">
+                        <label for="visitPurpose" class="form-label">Visit Purpose</label>
+                        <input type="text" class="form-control" id="visitPurpose" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="briefDescription" class="form-label">Brief Visit Description</label>
+                        <textarea class="form-control" id="briefDescription" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urgencySelect" class="form-label">Urgency Level</label>
+                        <select class="form-select" id="urgencySelect" required>
+                            <option value="normal">Normal</option>
+                            <option value="priority">Priority</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submitVisit">Create</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+                <div id="createStatusMessage" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="editVisitModal" tabindex="-1" aria-labelledby="editVisitModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editVisitModalLabel">Create Visit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editVisitForm">
+                    <div class="mb-3">
+                        <label for="editDoctorSelect" class="form-label">Select Doctor</label>
+                        <select class="form-select" id="editDoctorSelect" required>
+                            <option value="" selected disabled>Select Doctor</option>
+                            <option value="cardiologist">Cardiologist</option>
+                            <option value="dentist">Dentist</option>
+                            <option value="therapist">Therapist</option>
+                        </select>
+                    </div>
+                    <div id="editDoctorFields"></div>
+                    <div class="mb-3">
+                        <label for="editVisitPurpose" class="form-label">Visit Purpose</label>
+                        <input type="text" class="form-control" id="editVisitPurpose" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editBriefDescription" class="form-label">Brief Visit Description</label>
+                        <textarea class="form-control" id="editBriefDescription" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editUrgencySelect" class="form-label">Urgency Level</label>
+                        <select class="form-select" id="editUrgencySelect" required>
+                            <option value="normal">Normal</option>
+                            <option value="priority">Priority</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editFullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="editFullName" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submitEditVisit">Edit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+                <div id="editStatusMessage" class="mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 text-center justify-content-center d-none" id="filter">
+    <form id="filterForm">
+        <div class="row align-items-center mx-auto text-center justify-content-center">
+            <div class="col-auto mt-2">
+                <label for="searchInput" class="col-form-label">Search:</label>
+            </div>
+            <div class="col-auto mt-2">
+                <input type="text" class="form-control" id="searchInput" placeholder="Enter title/content">
+            </div>
+            <div class="col-auto mt-2">
+                <label for="urgencyFilter" class="col-form-label">Urgency:</label>
+            </div>
+            <div class="col-auto mt-2">
+                <select class="form-select" id="urgencyFilter">
+                    <option value="" selected>All</option>
+                    <option value="normal">Normal</option>
+                    <option value="priority">Priority</option>
+                    <option value="urgent">Urgent</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary mt-2" id="applyFilterBtn">Apply Filter</button>
+                <button type="button" class="btn btn-secondary mt-2" id="clearFilterBtn">Clear Filter</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<h1 class="organize text-center mt-5 d-none" id="organize">Please login to organize visits</h1>
+
+
+
+
+
+
+<div id="visitsBoard" class="mt-4 mx-4 card_container text-center">
+    
+    <strong id="no_message" class="mx-auto d-none">No items have been added.</strong>
+</div>
+
+
+
+</body>
+
+</html>
