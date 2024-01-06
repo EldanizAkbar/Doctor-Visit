@@ -55,8 +55,8 @@ Click on the "Log Out" button to end your session.
 * Bootstrap
 
 ## Installation
-1.Clone the repository to your local machine.
-2.Open the index.html file in a web browser to run the application.
+* Clone the repository to your local machine.
+* Open the index.html file in a web browser to run the application.
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or pull requests.
