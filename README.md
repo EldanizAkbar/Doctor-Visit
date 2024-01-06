@@ -8,7 +8,7 @@ This project is a Health Visits Management System that enables users to schedule
 Users can log in to the system to access personalized features.
 Log out functionality is available to secure user sessions.
 
-# Visit Creation:
+## Visit Creation:
 Users can create health visits by providing necessary details such as purpose, description, urgency, full name, and selecting a doctor.
 
 # Filtering and Search:
