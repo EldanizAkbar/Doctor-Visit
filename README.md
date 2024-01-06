@@ -58,6 +58,9 @@ Click on the "Log Out" button to end your session.
 * Clone the repository to your local machine.
 * Open the index.html file in a web browser to run the application.
 
+## Demo
+Check out the [Demo Version](https://eldanizakbar.github.io/Doctor-Visit) of the website.
+
 ## Contributing
 Contributions are welcome! Feel free to open issues or pull requests.
 
